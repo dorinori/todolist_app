@@ -18,3 +18,5 @@ To use:
 2. open terminal and cd into project/todo
 3. run `rails server`
 4. navigate to <localhost/3000>
+
+link: https://desolate-crag-38951.herokuapp.com/
