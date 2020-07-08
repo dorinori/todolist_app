@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tag.name %>
+</p>
+
+
+<div class="links">
+ <%= link_to 'Edit', edit_tag_path(@tag) %> |
+ <%= link_to 'Tags', tags_path %>
+</div>

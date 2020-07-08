@@ -1,0 +1,27 @@
+<%= form_with(model: todo_list_tag, local: true) do |form| %>
+  <% if todo_list_tag.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(todo_list_tag.errors.count, "error") %> prohibited this todo_list_tag from being saved:</h2>
+
+      <ul>
+        <% todo_list_tag.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :todo_list_id %>
+    <%= form.text_field :todo_list_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tags_id %>
+    <%= form.text_field :tags_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
