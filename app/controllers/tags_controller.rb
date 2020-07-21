@@ -10,6 +10,8 @@ class TagsController < ApplicationController
   # GET /tags/1
   # GET /tags/1.json
   def show
+    @todo_list_tags = TodoListTag.where(tags_id: params[:id]).pluck(:todo_list_id)
+    @todo_lists = TodoList.where(id: @todo_list_tags)
   end
 
   # GET /tags/new
@@ -66,6 +68,7 @@ class TagsController < ApplicationController
     def set_tag
       @tag = Tag.find(params[:id])
     end
+
 
     # Only allow a list of trusted parameters through.
     def tag_params

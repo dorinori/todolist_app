@@ -10,6 +10,9 @@ class TodoListsController < ApplicationController
   # GET /todo_lists/1
   # GET /todo_lists/1.json
   def show
+    @tag_option = Tag.pluck(:name, :id)
+    @todo_list_id = params[:id]
+
     @todo_list_tags = TodoListTag.where(todo_list_id: params[:id]).pluck(:tags_id)
     @tags = Tag.where(id: @todo_list_tags)
   end
@@ -56,12 +59,14 @@ class TodoListsController < ApplicationController
   # DELETE /todo_lists/1
   # DELETE /todo_lists/1.json
   def destroy
-   if @todo_list.delete
-    flash[:success] = "Todo List was deleted."
-   else
-    flash[:error] = "Todo List could not be deleted."
-   end
-   redirect_to @todo_list 
+    @todo_item = @todo_list.todo_items.all
+    @todo_item.delete(@todo_item)
+    if @todo_list.delete
+      flash[:success] = "Todo List was deleted."
+    else
+      flash[:error] = "Todo List could not be deleted."
+    end
+    redirect_to @todo_list 
   end
 
   private

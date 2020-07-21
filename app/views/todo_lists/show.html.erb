@@ -1,28 +1,43 @@
+<div class = "trash_icon">
+  <%= link_to todo_list_path(@todo_list), method: :delete, data: { confirm: "Are you sure?" } do %> 
+    <i class="fa fa-trash fa-2x"></i>
+    <% end %>
+</div>
+
+<div class = "edit_icon">
+  <%= link_to edit_todo_list_path(@todo_list) do %> 
+    <i class="fa fa-pencil-square-o fa-2x"></i>
+    <% end %>
+</div>
+
 <p id="notice"><%= notice %></p>
 <h2 class="todo_list_title"><%= @todo_list.title %></h2>
 <p class="todo_list_sub_title"><%= @todo_list.description %></p>
 
-<table>
-<tbody>
-    <% @tags.each do |tag| %>
-      <tr>
-        <td><%= tag.name %></td>
-        <td><%= link_to 'Show', tag %></td>
-      </tr>
+<%= form_tag(todo_list_tags_path, :method => "create") do %>
+  <div id = "select"><%= select_tag :tag, options_for_select(@tag_option) %></div>
+	<%= hidden_field_tag :todo_list_id, @todo_list_id %>
+	<div id = "tag_submit"><%= submit_tag("Add tag") %></div>
+<% end %>
+
+<div class = "clearfix">
+<% @tags.each do |tag| %>
+  <div id = "boxed">
+    <div class = "text"><%= link_to tag.name, tag %></div>
+    <%= link_to todo_list_tag_path(:tag_id => tag.id, :todo_list_id => @todo_list.id), method: :delete, data: { confirm: "Are you sure?" } do %>
+        <i class="fa fa-times"></i>
     <% end %>
-  </tbody>
-</table>
+  </div>
+<% end %>
+</div>
 
 <div id="todo_items_wrapper">
- <%= render @todo_list.todo_items %>
- <div id="form">
-  <%= render "todo_items/form" %>
- </div>
+  <%= render @todo_list.todo_items.order(:priority) %>
+  <div id="form">
+    <%= render "todo_items/form" %>
+  </div>
 </div>
+
 <div class="links">
- <%= link_to 'Edit', edit_todo_list_path(@todo_list) %> |
- <%= link_to 'Home', todo_lists_path %> |
- <%= link_to 'Delete', todo_list_path(@todo_list), method: :delete, data: { confirm: "Are you sure?" } %>
+ <%= link_to 'Home', todo_lists_path %>
 </div>
-
-

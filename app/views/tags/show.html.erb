@@ -1,12 +1,17 @@
+<div class = "edit_icon">
+	<%= link_to edit_tag_path(@tag) do %> 
+		<i class="fa fa-pencil-square-o fa-2x"></i>
+	<% end %>
+</div>
+
 <p id="notice"><%= notice %></p>
+<h2 class = "todo_list_title"><%= @tag.name %></h2>
 
-<p>
-  <strong>Name:</strong>
-  <%= @tag.name %>
-</p>
-
+<% @todo_lists.each do |todo_list| %>
+    <div class = "todo_list_link"><%= link_to todo_list.title, todo_list %></div>
+    <div class = "todo_list_sub_title"><%= todo_list.description %></div>
+<% end %>
 
 <div class="links">
- <%= link_to 'Edit', edit_tag_path(@tag) %> |
- <%= link_to 'Tags', tags_path %>
+	<%= link_to 'Tags', tags_path %>
 </div>

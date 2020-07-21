@@ -8,20 +8,57 @@
   <div class="todo_item">
    <p style="opacity: 0.4;"><strike><%= todo_item.content %></strike></p>
   </div>
-  <div class="trash">
-   <%= link_to "Delete", todo_list_todo_item_path(@todo_list, todo_item.id), method: :delete, data: { confirm: "Are you sure?" } %>
+
+  <div class="pull-left">
+    <span class="fa fa-stack">
+        <% if @todo_list.todo_items.where("priority < ?", todo_item.priority).last != nil %>
+          <%= link_to increment_todo_list_todo_item_path(@todo_list, todo_item.id), method: :patch do %>
+            <i class="fa fa-caret-up"></i>
+          <% end %>
+        <%end%>
+        <% if @todo_list.todo_items.where("priority > ?", todo_item.priority).first != nil %>
+          <%= link_to decrement_todo_list_todo_item_path(@todo_list, todo_item.id), method: :patch do %>
+          <i class="fa fa-caret-down"></i>
+          <%end%>
+        <%end%>
+    </span>
   </div>
+
+  <div class="trash">
+    <%= link_to todo_list_todo_item_path(@todo_list, todo_item.id), method: :delete, data: { confirm: "Are you sure?" } do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
+  </div>
+
  <% else %>
   <div class="complete">
-   <%= link_to complete_todo_list_todo_item_path(@todo_list, todo_item.id), method: :patch do %>
-    <i class="fa fa-circle-thin"></i>
-   <% end %>
+    <%= link_to complete_todo_list_todo_item_path(@todo_list, todo_item.id), method: :patch do %>
+      <i class="fa fa-circle-thin"></i>
+    <% end %>
   </div>
   <div class="todo_item">
-   <p><%= todo_item.content %></p>
+    <p><%= todo_item.content %></p>
   </div>
-  <%= link_to todo_list_todo_item_path(@todo_list, todo_item.id), method: :delete, data: { confirm: "Are you sure?" } do %>
-    <i class="fa fa-trash"></i>
-   <% end %>
+
+<div class="pull-left">
+    <span class="fa fa-stack">
+        <% if @todo_list.todo_items.where("priority < ?", todo_item.priority).last != nil %>
+          <%= link_to increment_todo_list_todo_item_path(@todo_list, todo_item.id), method: :patch do %>
+            <i class="fa fa-caret-up"></i>
+          <% end %>
+        <%end%>
+        <% if @todo_list.todo_items.where("priority > ?", todo_item.priority).first != nil %>
+          <%= link_to decrement_todo_list_todo_item_path(@todo_list, todo_item.id), method: :patch do %>
+          <i class="fa fa-caret-down"></i>
+          <%end%>
+        <%end%>
+    </span>
+  </div>
+
+  <div class = "trash">
+    <%= link_to todo_list_todo_item_path(@todo_list, todo_item.id), method: :delete, data: { confirm: "Are you sure?" } do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
+  </div>
  <% end %>
 </div>

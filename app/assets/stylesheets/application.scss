@@ -80,11 +80,82 @@ body {
 }
 
 .todo_list_sub_title {
-	margin: 0 0 3em 0;
+	margin: 0 0 1em 0;
 	text-align: center;
 	font-size: 0.9em;
 	color: $dark;
 	font-weight: 100;
+}
+
+.todo_list_link {
+	display: block;
+	margin: 0.8em auto 0 auto;
+	text-align: center;
+	font-size: 1.2em;
+	color: white;
+	a {
+		color: $dark;
+	}
+	&:hover {
+			opacity: 0.4;
+	}
+}
+
+#boxed {
+	background: white;
+	margin: 1em auto 1em 2em ;
+	padding: 0.25em;
+	text-align: center;
+	float:left;
+	width: 12%;
+	border-radius: 15px;
+	a {
+		color: $dark;
+		text-decoration: none;
+	}
+	.text{
+		float: left;
+		padding: 0 0.8em 0 0.6em;
+	}
+}
+
+select {
+  color: $dark;
+  display: block;
+  margin: 0 0.5em 0 20.5em ;
+  float:left;
+  border: none;
+  padding: 0.25em;
+  border-radius: 4px;
+  background: rgba(250,250,250,.4);
+}
+
+#tag_submit {
+	input[type="submit"] {
+		background: white;
+		outline: none;
+		border: none;
+		height: 25px;
+		border-radius: 4px;
+		width: 10%;
+		display: inline-block;
+		transition: all .4s ease-in-out;
+		cursor: pointer;
+		color: $dark;
+		&:hover {
+			background: $dark;
+			color: white;
+		}
+	}
+	::-webkit-input-placeholder { color: $dark; }
+}
+
+
+#strong {
+	display: inline-block;
+	width: 50px;
+	border: 1px solid #000;
+	text-align: center;
 }
 
 .index_row {
@@ -108,14 +179,27 @@ body {
 			padding: 1em 0;
 		}
 		.todo_item {
-			width: 80%;
+			width: 75%;
 			float: left;
+			border-right: 1px solid rgba(250,250,250, .3);
 			p {
 				margin: 0;
 				padding: 1em;
 				color: $dark;
 				font-weight: 100;
 			}
+		}
+		.fa-stack {
+  			text-align:center;
+  			margin: 0.6em 0.6em 0 0em ;
+		}
+		.fa-stack .fa-caret-down {
+  			position: absolute;
+  			bottom: 0;
+		}
+		.fa-stack .fa-caret-up {
+  			position: absolute;
+  			top: 0;
 		}
 		.trash {
 			width: 10%;
@@ -164,10 +248,34 @@ body {
 	}
 }
 
+
 .links {
 	display: block;
 	margin: 1.5em auto 0 auto;
 	text-align: center;
+	font-size: 0.8em;
+	color: white;
+	a {
+		color: white;
+	}
+}
+
+.trash_icon {
+	display: block;
+	margin: 0em auto 0em 1em;
+	text-align:left;
+	float: left;
+	font-size: 0.8em;
+	color: white;
+	a {
+		color: white;
+	}
+}
+
+.edit_icon {
+	display: block;
+	margin: 0em 1em 0 auto;
+	text-align: right;
 	font-size: 0.8em;
 	color: white;
 	a {
